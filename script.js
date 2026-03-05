@@ -1,114 +1,27 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+let duration = 60 * 60;
+const timerDisplay = document.getElementById("timer");
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:"Poppins",sans-serif;
-transition:all 0.3s ease;
+function startTimer() {
+  let timer = duration;
+  
+  setInterval(function() {
+    let hours = Math.floor(timer / 3600);
+    let minutes = Math.floor((timer % 3600) / 60);
+    let seconds = timer % 60;
+    
+    hours = hours < 10 ? "0" + hours : hours;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    
+    timerDisplay.textContent = hours + ":" + minutes + ":" + seconds;
+    
+    if (--timer < 0) {
+      timerDisplay.textContent = "Expired!";
+    }
+  }, 1000);
 }
 
-body{
-background:#f0faff;
-display:flex;
-justify-content:center;
-align-items:center;
-min-height:100vh;
-padding:20px;
-}
-
-/* 🌙 Dark Mode */
-
-body.dark{
-background:#0f172a;
-}
-
-/* Container */
-
-.container{
-width:100%;
-max-width:900px;
-}
-
-/* 🔥 Card */
-
-.card{
-background:#ffffff;
-border-radius:20px;
-padding:40px;
-border:2px solid #e0eaff;
-position:relative;
-animation:cardGlow 3s infinite alternate;
-}
-
-@keyframes cardGlow{
-
-0%{
-box-shadow:0 0 15px rgba(64,112,244,0.4),
-0 0 30px rgba(64,112,244,0.3);
-}
-
-100%{
-box-shadow:0 0 30px rgba(64,112,244,0.8),
-0 0 60px rgba(64,112,244,0.6);
-}
-
-}
-
-body.dark .card{
-background:#1e293b;
-border-color:#334155;
-}
-
-/* Top Blue Strip */
-
-.card::before{
-content:"";
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:8px;
-background:#4070f4;
-border-radius:20px 20px 0 0;
-}
-
-/*  PROFILE IMAGE */
-
-.profile-image{
-display:flex;
-justify-content:center;
-margin-bottom:20px;
-}
-
-.profile-image img{
-width:170px;
-height:170px;
-border-radius:50%;
-object-fit:cover;
-border:4px solid #4070f4;
-
-box-shadow:
-0 0 10px #4070f4,
-0 0 20px #4070f4,
-0 0 40px #4070f4;
-
-animation:neonBlink 2s infinite alternate;
-}
-
-@keyframes neonBlink{
-
-0%{
-box-shadow:
-0 0 10px #4070f4,
-0 0 20px #4070f4,
-0 0 40px #4070f4;
-}
-
-100%{
-box-shadow:
-0 0 20px #00eaff,
-0 0 40px #00eaff,
+startTimer();0 0 40px #00eaff,
 0 0 70px #00eaff;
 }
 
